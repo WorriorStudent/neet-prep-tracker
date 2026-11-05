@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>NEET Mock Test Record Book</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#182230;background:#f6f7fb;--muted:#667085;--line:#e6e9ef;--green:#147d64;--card:#fff}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh}button,input,textarea{font:inherit}.shell{max-width:1120px;margin:auto;padding:28px 20px 50px}.header{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:22px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--green);color:white;font-weight:850;font-size:19px}.brand h1{font-size:21px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.link{color:var(--green);font-size:13px;text-decoration:none;font-weight:650}.intro{background:linear-gradient(115deg,#145d50,#1a8b6d);color:white;border-radius:18px;padding:21px 24px;margin-bottom:16px}.intro h2{margin:0 0 5px;font-size:21px}.intro p{margin:0;color:#d4f1e7;font-size:13px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 3px 12px #17203308}.stat{padding:15px 17px}.label{color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.04em}.value{font-size:25px;font-weight:760;margin-top:7px}.layout{display:grid;grid-template-columns:350px 1fr;gap:15px;align-items:start}.card{padding:18px}.card h3{font-size:16px;margin:0 0 14px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:grid;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:#475467;font-weight:650}.field input,.field textarea,.search{width:100%;border:1px solid #d9dee8;border-radius:9px;padding:10px;background:white;color:#182230;min-width:0}.field textarea{min-height:78px;resize:vertical}.field input:focus,.field textarea:focus,.search:focus{outline:2px solid #9ed7c6;border-color:var(--green)}.hint{color:var(--muted);font-size:11px;margin:12px 0}.actions{display:flex;gap:8px;margin-top:13px}.btn{border:0;border-radius:9px;padding:10px 13px;font-weight:700;cursor:pointer}.primary{background:var(--green);color:white}.secondary{background:#edf1f4;color:#344054}.danger{background:#fff0f0;color:#a93232}.hidden{display:none!important}.subject-title{font-size:12px;color:var(--green);font-weight:750;margin:15px 0 8px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.toolbar h3{margin:0}.toolbar-actions{display:flex;gap:8px;align-items:center}.search{max-width:230px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:700px}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid #edf0f4;font-size:12px;white-space:nowrap}th{color:var(--muted);font-size:10px;letter-spacing:.04em;text-transform:uppercase}td strong{font-size:13px}.score{font-weight:750;color:#145d50}.note-cell{max-width:170px;overflow:hidden;text-overflow:ellipsis}.row-actions{display:flex;gap:5px}.mini{border:1px solid #e6e9ef;border-radius:7px;padding:5px 8px;background:#fff;color:#344054;font-size:11px;cursor:pointer}.empty{text-align:center;color:var(--muted);padding:28px 8px;font-size:13px}.list-footer{color:var(--muted);font-size:11px;margin-top:11px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1f2937;color:white;padding:10px 15px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s}.toast.show{opacity:1}.footer{text-align:center;color:#8a93a1;font-size:11px;margin-top:18px}
+    @media(max-width:850px){.layout{grid-template-columns:1fr}.form-card{max-width:none}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.shell{padding:18px 12px 36px}.header{align-items:flex-start}.header .link{padding-top:8px}.card{padding:14px}.toolbar{align-items:flex-start;flex-direction:column}.toolbar-actions{width:100%}.search{max-width:none;flex:1}.stats{gap:8px}.stat{padding:12px}.value{font-size:22px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="header"><div class="brand"><div class="logo">N</div><div><h1>Mock Test Record Book</h1><p>Keep every NEET mock result in one place</p></div></div><a class="link" href="./index.html">← Study tracker</a></header>
+    <section class="intro"><h2>Every test is useful data.</h2><p>Record subject-wise marks, compare your scores, and keep notes on what to improve.</p></section>
+    <section class="stats" aria-label="Mock test summary">
+      <article class="stat"><div class="label">TESTS RECORDED</div><div class="value" id="count">0</div></article>
+      <article class="stat"><div class="label">AVERAGE SCORE</div><div class="value" id="average">—</div></article>
+      <article class="stat"><div class="label">PERSONAL BEST</div><div class="value" id="best">—</div></article>
+      <article class="stat"><div class="label">LATEST SCORE</div><div class="value" id="latest">—</div></article>
+    </section>
+    <section class="layout">
+      <article class="card form-card">
+        <h3 id="formTitle">Add a mock test</h3>
+        <form id="testForm">
+          <div class="form-grid">
+            <div class="field full"><label for="testName">Test name / series</label><input id="testName" maxlength="80" placeholder="e.g. Full Syllabus Test 01" required></div>
+            <div class="field"><label for="testDate">Test date</label><input id="testDate" type="date" required></div>
+            <div class="field"><label for="testSource">Source (optional)</label><input id="testSource" maxlength="60" placeholder="Coaching / app"></div>
+          </div>
+          <div class="subject-title">Subject marks</div>
+          <div class="form-grid">
+            <div class="field"><label for="physics">Physics / 180</label><input id="physics" type="number" min="0" max="180" step="1" value="0" required></div>
+            <div class="field"><label for="chemistry">Chemistry / 180</label><input id="chemistry" type="number" min="0" max="180" step="1" value="0" required></div>
+            <div class="field"><label for="biology">Biology / 360</label><input id="biology" type="number" min="0" max="360" step="1" value="0" required></div>
+            <div class="field"><label>Total score / 720</label><input id="total" type="number" value="0" readonly aria-live="polite"></div>
+            <div class="field full"><label for="notes">What went well / topics to revisit</label><textarea id="notes" maxlength="500" placeholder="Optional: note weak chapters, mistakes, or next steps"></textarea></div>
+          </div>
+          <p class="hint">Subject marks add up automatically. Data is saved in this browser on this device.</p>
+          <div class="actions"><button class="btn primary" id="saveBtn" type="submit">Save test</button><button class="btn secondary hidden" id="cancelBtn" type="button">Cancel edit</button></div>
+        </form>
+      </article>
+      <article class="card">
+        <div class="toolbar"><h3>All mock tests</h3><div class="toolbar-actions"><input class="search" id="search" type="search" placeholder="Search tests…" aria-label="Search mock tests"><button class="btn secondary" id="exportBtn" type="button">Export CSV</button></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Date</th><th>Test</th><th>Physics</th><th>Chemistry</th><th>Biology</th><th>Total</th><th>Notes</th><th>Actions</th></tr></thead><tbody id="testRows"></tbody></table><div class="empty" id="empty">No mock tests recorded yet. Add your first result using the form.</div></div>
+        <div class="list-footer" id="resultCount"></div>
+      </article>
+    </section>
+    <p class="footer">Your test records stay in this browser. Use “Export CSV” to keep a spreadsheet backup.</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  const KEY = 'neet-mock-test-records-v1';
+  const $ = id => document.getElementById(id);
+  const localDate = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
+  let records = [];
+  try { const saved = JSON.parse(localStorage.getItem(KEY) || '[]'); if (Array.isArray(saved)) records = saved; } catch { records = []; }
+  let editingId = null, timer;
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(records)); } catch { showToast('Could not save. Check browser storage settings.'); } };
+  function showToast(message) { const el = $('toast'); el.textContent = message; el.classList.add('show'); clearTimeout(timer); timer = setTimeout(() => el.classList.remove('show'), 2200); }
+  function recalc() { $('total').value = (Number($('physics').value)||0) + (Number($('chemistry').value)||0) + (Number($('biology').value)||0); }
+  ['physics','chemistry','biology'].forEach(id => $(id).addEventListener('input', recalc));
+  function resetForm() { $('testForm').reset(); $('testDate').value = localDate(); $('physics').value = $('chemistry').value = $('biology').value = '0'; recalc(); editingId = null; $('formTitle').textContent = 'Add a mock test'; $('saveBtn').textContent = 'Save test'; $('cancelBtn').classList.add('hidden'); }
+  function safeText(value) { return String(value || ''); }
+  function render() {
+    const ordered = [...records].sort((a,b) => b.date.localeCompare(a.date) || (b.createdAt||0)-(a.createdAt||0));
+    const scores = records.map(r => Number(r.total));
+    $('count').textContent = records.length;
+    $('average').textContent = scores.length ? `${Math.round(scores.reduce((a,b)=>a+b,0)/scores.length)}/720` : '—';
+    $('best').textContent = scores.length ? `${Math.max(...scores)}/720` : '—';
+    $('latest').textContent = ordered.length ? `${ordered[0].total}/720` : '—';
+    const query = $('search').value.trim().toLowerCase();
+    const shown = ordered.filter(r => [r.name,r.source,r.notes,r.date].some(v => safeText(v).toLowerCase().includes(query)));
+    const tbody = $('testRows'); tbody.replaceChildren(); $('empty').classList.toggle('hidden', shown.length > 0);
+    if (!shown.length && query) $('empty').textContent = 'No matching tests found.';
+    if (!query && !records.length) $('empty').textContent = 'No mock tests recorded yet. Add your first result using the form.';
+    shown.forEach(r => {
+      const tr = document.createElement('tr');
+      const vals = [r.date, r.name + (r.source ? ` · ${r.source}` : ''), r.physics, r.chemistry, r.biology];
+      vals.forEach((value,i) => { const td = document.createElement('td'); td.textContent = value; if (i===1) td.title = r.name + (r.source ? ` — ${r.source}` : ''); tr.append(td); });
+      const total = document.createElement('td'); total.className = 'score'; total.textContent = `${r.total}/720`; tr.append(total);
+      const notes = document.createElement('td'); notes.className = 'note-cell'; notes.textContent = r.notes || '—'; notes.title = r.notes || ''; tr.append(notes);
+      const actions = document.createElement('td'); const group = document.createElement('div'); group.className = 'row-actions';
+      const edit = document.createElement('button'); edit.className = 'mini'; edit.type = 'button'; edit.textContent = 'Edit'; edit.addEventListener('click', () => beginEdit(r));
+      const del = document.createElement('button'); del.className = 'mini'; del.type = 'button'; del.textContent = 'Delete'; del.addEventListener('click', () => { if (!confirm(`Delete “${r.name}” from your records?`)) return; records = records.filter(x => x.id !== r.id); if (editingId === r.id) resetForm(); save(); render(); showToast('Test record deleted.'); });
+      group.append(edit,del); actions.append(group); tr.append(actions); tbody.append(tr);
+    });
+    $('resultCount').textContent = `${shown.length} of ${records.length} test${records.length === 1 ? '' : 's'}`;
+  }
+  function beginEdit(r) { editingId = r.id; $('testName').value = r.name; $('testDate').value = r.date; $('testSource').value = r.source || ''; $('physics').value = r.physics; $('chemistry').value = r.chemistry; $('biology').value = r.biology; $('notes').value = r.notes || ''; recalc(); $('formTitle').textContent = 'Edit mock test'; $('saveBtn').textContent = 'Update test'; $('cancelBtn').classList.remove('hidden'); $('testName').focus(); window.scrollTo({top:0,behavior:'smooth'}); }
+  $('testForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const physics=Number($('physics').value), chemistry=Number($('chemistry').value), biology=Number($('biology').value);
+    if (![physics,chemistry,biology].every(Number.isInteger) || physics<0 || physics>180 || chemistry<0 || chemistry>180 || biology<0 || biology>360) { showToast('Check subject marks: Physics/Chemistry max 180, Biology max 360.'); return; }
+    const current = records.find(r => r.id === editingId);
+    const item = { id: editingId || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())), name: $('testName').value.trim(), date: $('testDate').value, source: $('testSource').value.trim(), physics, chemistry, biology, total: physics+chemistry+biology, notes: $('notes').value.trim(), createdAt: current?.createdAt || Date.now() };
+    if (!item.name || !item.date) { showToast('Enter the test name and date.'); return; }
+    if (editingId) records = records.map(r => r.id === editingId ? item : r); else records.push(item);
+    save(); resetForm(); render(); showToast(editingId ? 'Test record updated.' : 'Mock test saved.');
+  });
+  $('cancelBtn').addEventListener('click', resetForm);
+  $('search').addEventListener('input', render);
+  $('exportBtn').addEventListener('click', () => {
+    if (!records.length) { showToast('Add a test before exporting.'); return; }
+    const cols = ['Date','Test name','Source','Physics / 180','Chemistry / 180','Biology / 360','Total / 720','Notes'];
+    const quote = value => `"${String(value ?? '').replaceAll('"','""')}"`;
+    const lines = [cols, ...[...records].sort((a,b)=>a.date.localeCompare(b.date)).map(r=>[r.date,r.name,r.source,r.physics,r.chemistry,r.biology,r.total,r.notes])].map(row=>row.map(quote).join(','));
+    const blob = new Blob(['\ufeff'+lines.join('\r\n')], {type:'text/csv;charset=utf-8'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download='neet-mock-test-records.csv'; document.body.append(a); a.click(); a.remove(); URL.revokeObjectURL(url); showToast('CSV backup downloaded.');
+  });
+  $('testDate').value = localDate(); render();
+})();
+</script>
+</body>
+</html>
