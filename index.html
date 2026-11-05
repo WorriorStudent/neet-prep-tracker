@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>NEET Prep — Study Tracker</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#182230;background:#f6f7fb;font-synthesis:none;text-rendering:optimizeLegibility;--muted:#667085;--line:#e6e9ef;--green:#147d64;--green-light:#e4f5ef;--purple:#6857c8;--card:#fff}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer}.shell{max-width:1120px;margin:auto;padding:30px 22px 56px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:13px}.logo{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;background:var(--green);color:white;font-weight:850;font-size:19px}.brand h1{font-size:22px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.date{color:var(--muted);font-size:14px}.welcome{background:linear-gradient(115deg,#145d50,#1a8b6d);color:white;border-radius:20px;padding:24px 26px;margin-bottom:18px}.welcome h2{margin:0 0 6px;font-size:22px}.welcome p{margin:0;color:#d4f1e7;font-size:14px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:18px 0}.card,.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 3px 12px #17203308}.stat{padding:17px 18px}.stat-label{color:var(--muted);font-size:12px;font-weight:650}.stat-value{font-size:27px;font-weight:760;margin-top:8px}.stat-note{font-size:12px;color:var(--muted);margin-top:2px}.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.stack{display:grid;gap:16px;align-content:start}.card{padding:19px}.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.card h3{margin:0;font-size:16px}.subtle{font-size:12px;color:var(--muted)}form{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}input,select{background:white;color:#182230;border:1px solid #d9dee8;border-radius:10px;padding:10px 11px;min-width:0}input:focus,select:focus{outline:2px solid #9ed7c6;border-color:var(--green)}input[type=text]{flex:1;min-width:150px}.small-input{width:92px}button.primary{background:var(--green);color:white;border:0;border-radius:10px;padding:10px 14px;font-weight:700}button.primary:hover{background:#0f6955}.list{display:grid;gap:8px}.row{display:flex;align-items:center;gap:10px;border:1px solid #edf0f4;border-radius:12px;padding:10px 11px;min-width:0}.row-main{flex:1;min-width:0}.row-title{font-size:13px;font-weight:630;overflow-wrap:anywhere}.row-meta{font-size:11px;color:var(--muted);margin-top:3px}.row input[type=checkbox]{accent-color:var(--green);width:17px;height:17px}.done .row-title{text-decoration:line-through;color:#89919f}.pill{font-size:10px;font-weight:700;padding:5px 8px;border-radius:99px;background:var(--green-light);color:var(--green);white-space:nowrap}.pill.purple{background:#f0edff;color:var(--purple)}.icon-btn{width:29px;height:29px;border:0;background:#f5f6f8;border-radius:8px;color:#667085;font-size:17px}.empty{color:var(--muted);font-size:13px;padding:12px 2px}.progress{height:8px;background:#edf0f3;border-radius:99px;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;background:var(--green);border-radius:99px;transition:width .2s}.subject-progress{display:grid;gap:14px}.subject-line{display:flex;justify-content:space-between;font-size:12px}.subject-line strong{font-weight:650}.mock-summary{display:flex;gap:12px;margin:12px 0}.mock-summary div{flex:1;background:#f7f8fa;border-radius:12px;padding:12px}.mock-summary span{font-size:11px;color:var(--muted)}.mock-summary strong{display:block;font-size:21px;margin-top:4px}.mock-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #edf0f4;padding:9px 2px;font-size:12px}.footer{text-align:center;color:#8a93a1;font-size:11px;margin-top:18px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1f2937;color:white;padding:10px 15px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s}.toast.show{opacity:1}
+    @media(max-width:780px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.shell{padding:20px 14px 40px}.top{align-items:flex-start}.date{font-size:12px;text-align:right}.welcome{padding:20px}.stats{gap:9px}.stat{padding:14px}.stat-value{font-size:23px}.card{padding:15px}.card-head{align-items:flex-start}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <div class="brand"><div class="logo">N</div><div><h1>NEET Prep</h1><p>Your personal study tracker</p></div></div>
+      <div class="date" id="today"></div>
+    </header>
+    <section class="welcome"><h2>Small steps, every day.</h2><p>Plan your study, track your syllabus, and learn from every mock test.</p></section>
+    <section class="stats" aria-label="Study summary">
+      <article class="stat"><div class="stat-label">STUDY TIME TODAY</div><div class="stat-value" id="hoursStat">0h</div><div class="stat-note">From completed tasks</div></article>
+      <article class="stat"><div class="stat-label">TODAY'S TASKS</div><div class="stat-value" id="tasksStat">0/0</div><div class="stat-note">Keep your plan manageable</div></article>
+      <article class="stat"><div class="stat-label">SYLLABUS TRACKED</div><div class="stat-value" id="syllabusStat">0%</div><div class="stat-note">Chapters marked complete</div></article>
+      <article class="stat"><div class="stat-label">MOCK TEST AVERAGE</div><div class="stat-value" id="mockStat">—</div><div class="stat-note">Based on tests you add</div></article>
+    </section>
+    <section class="layout">
+      <div class="stack">
+        <article class="card">
+          <div class="card-head"><h3>Today's study plan</h3><span class="subtle">Add tasks and estimated hours</span></div>
+          <form id="taskForm"><input id="taskName" type="text" placeholder="e.g. Revise Human Physiology" maxlength="100" required aria-label="Study task"><select id="taskSubject" aria-label="Subject"><option>Biology</option><option>Chemistry</option><option>Physics</option><option>Revision</option></select><input id="taskHours" class="small-input" type="number" min="0.25" max="16" step="0.25" value="1" aria-label="Estimated hours"><button class="primary" type="submit">Add task</button></form>
+          <div class="list" id="taskList"></div>
+        </article>
+        <article class="card">
+          <div class="card-head"><h3>Chapter tracker</h3><span class="subtle">Track what you've covered</span></div>
+          <form id="chapterForm"><input id="chapterName" type="text" placeholder="Add a chapter" maxlength="100" required aria-label="Chapter name"><select id="chapterSubject" aria-label="Chapter subject"><option>Biology</option><option>Chemistry</option><option>Physics</option></select><button class="primary" type="submit">Add chapter</button></form>
+          <div class="subject-progress" id="subjectProgress"></div>
+          <div class="list" id="chapterList" style="margin-top:14px"></div>
+        </article>
+      </div>
+      <div class="stack">
+        <article class="card">
+          <div class="card-head"><h3>Mock test log</h3><span class="subtle">Record your practice tests</span></div>
+          <form id="mockForm"><input id="mockName" type="text" placeholder="Test name (optional)" maxlength="60" aria-label="Test name"><input id="mockScore" class="small-input" type="number" min="0" max="720" placeholder="Score / 720" required aria-label="Score out of 720"><button class="primary" type="submit">Save score</button></form>
+          <div class="mock-summary"><div><span>BEST SCORE</span><strong id="bestScore">—</strong></div><div><span>TESTS TAKEN</span><strong id="testCount">0</strong></div></div>
+          <div id="mockList"></div>
+        </article>
+        <article class="card">
+          <div class="card-head"><h3>Revision reminders</h3><span class="subtle">Choose what to revisit</span></div>
+          <form id="revisionForm"><input id="revisionName" type="text" placeholder="Topic to revise" maxlength="100" required aria-label="Revision topic"><input id="revisionDate" type="date" aria-label="Revision date"><button class="primary" type="submit">Add reminder</button></form>
+          <div class="list" id="revisionList"></div>
+        </article>
+      </div>
+    </section>
+    <p class="footer">Your tracker data stays in this browser on this device. Export/back-up is not enabled yet.</p>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  const KEY = 'neet-prep-tracker-v2';
+  const todayKey = new Date().toLocaleDateString('en-CA');
+  const emptyState = { tasks: [], chapters: [], mocks: [], revisions: [] };
+  let state;
+  try { state = { ...emptyState, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; }
+  catch { state = { ...emptyState }; }
+  const $ = id => document.getElementById(id);
+  const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { notify('Could not save data. Check browser storage settings.'); } };
+  let toastTimer;
+  function notify(message) { const el = $('toast'); el.textContent = message; el.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('show'), 2200); }
+  function node(tag, className, text) { const el = document.createElement(tag); if (className) el.className = className; if (text !== undefined) el.textContent = text; return el; }
+  function makeDelete(onClick) { const b = node('button', 'icon-btn', '×'); b.type = 'button'; b.title = 'Delete'; b.setAttribute('aria-label', 'Delete item'); b.addEventListener('click', onClick); return b; }
+  function dateLabel(date) { if (!date) return ''; const d = new Date(date + 'T00:00:00'); return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); }
+  function renderTasks() {
+    const list = $('taskList'); list.replaceChildren();
+    const todays = state.tasks.filter(t => t.date === todayKey);
+    if (!todays.length) { list.append(node('div', 'empty', 'No tasks for today yet. Add one small, specific goal above.')); }
+    todays.forEach(task => {
+      const row = node('div', 'row' + (task.done ? ' done' : ''));
+      const check = document.createElement('input'); check.type = 'checkbox'; check.checked = task.done; check.setAttribute('aria-label', 'Mark ' + task.name + ' complete');
+      check.addEventListener('change', () => { task.done = check.checked; persist(); render(); });
+      const main = node('div', 'row-main'); main.append(node('div', 'row-title', task.name), node('div', 'row-meta', `${task.subject} · ${Number(task.hours)} hr${Number(task.hours) === 1 ? '' : 's'}`));
+      row.append(check, main, node('span', 'pill', task.subject), makeDelete(() => { state.tasks = state.tasks.filter(x => x.id !== task.id); persist(); render(); })); list.append(row);
+    });
+    const done = todays.filter(t => t.done).length;
+    $('tasksStat').textContent = `${done}/${todays.length}`;
+    const hours = todays.filter(t => t.done).reduce((sum, t) => sum + Number(t.hours || 0), 0);
+    $('hoursStat').textContent = `${Number.isInteger(hours) ? hours : hours.toFixed(1)}h`;
+  }
+  function renderChapters() {
+    const subjects = ['Biology', 'Chemistry', 'Physics'];
+    const progress = $('subjectProgress'); progress.replaceChildren();
+    subjects.forEach(subject => {
+      const items = state.chapters.filter(c => c.subject === subject); const percent = items.length ? Math.round(items.filter(c => c.done).length / items.length * 100) : 0;
+      const wrap = document.createElement('div'); const line = node('div', 'subject-line'); line.append(node('strong', '', subject), node('span', 'subtle', `${percent}% · ${items.filter(c => c.done).length}/${items.length}`));
+      const bar = node('div', 'progress'); const fill = document.createElement('span'); fill.style.width = percent + '%'; bar.append(fill); wrap.append(line, bar); progress.append(wrap);
+    });
+    const all = state.chapters; $('syllabusStat').textContent = `${all.length ? Math.round(all.filter(c => c.done).length / all.length * 100) : 0}%`;
+    const list = $('chapterList'); list.replaceChildren();
+    if (!all.length) list.append(node('div', 'empty', 'Add chapters as you study them; progress is calculated from your list.'));
+    all.forEach(chapter => {
+      const row = node('div', 'row' + (chapter.done ? ' done' : '')); const check = document.createElement('input'); check.type = 'checkbox'; check.checked = chapter.done; check.setAttribute('aria-label', 'Mark ' + chapter.name + ' complete');
+      check.addEventListener('change', () => { chapter.done = check.checked; persist(); render(); });
+      const main = node('div', 'row-main'); main.append(node('div', 'row-title', chapter.name), node('div', 'row-meta', chapter.subject));
+      row.append(check, main, makeDelete(() => { state.chapters = state.chapters.filter(x => x.id !== chapter.id); persist(); render(); })); list.append(row);
+    });
+  }
+  function renderMocks() {
+    const scores = state.mocks.map(m => Number(m.score)); const avg = scores.length ? Math.round(scores.reduce((a,b) => a+b, 0) / scores.length) : null;
+    $('mockStat').textContent = avg === null ? '—' : `${avg}/720`; $('bestScore').textContent = scores.length ? `${Math.max(...scores)}` : '—'; $('testCount').textContent = scores.length;
+    const list = $('mockList'); list.replaceChildren();
+    if (!state.mocks.length) { list.append(node('div', 'empty', 'Your mock results will appear here.')); return; }
+    state.mocks.slice(-4).reverse().forEach(mock => { const row = node('div', 'mock-row'); row.append(node('span', '', `${mock.name || 'Mock test'} · ${dateLabel(mock.date)}`), node('strong', '', `${mock.score}/720`), makeDelete(() => { state.mocks = state.mocks.filter(x => x.id !== mock.id); persist(); render(); })); list.append(row); });
+  }
+  function renderRevisions() {
+    const list = $('revisionList'); list.replaceChildren();
+    if (!state.revisions.length) { list.append(node('div', 'empty', 'No reminders yet. Add a topic you want to revisit.')); return; }
+    [...state.revisions].sort((a,b) => (a.date || '').localeCompare(b.date || '')).forEach(item => {
+      const row = node('div', 'row'); const main = node('div', 'row-main'); main.append(node('div', 'row-title', item.name), node('div', 'row-meta', item.date ? `Review · ${dateLabel(item.date)}` : 'Review when ready'));
+      const due = item.date && item.date <= todayKey; row.append(main, node('span', 'pill purple', due ? 'Due' : 'Review'), makeDelete(() => { state.revisions = state.revisions.filter(x => x.id !== item.id); persist(); render(); })); list.append(row);
+    });
+  }
+  function render() {
+    $('today').textContent = new Date().toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+    renderTasks(); renderChapters(); renderMocks(); renderRevisions();
+  }
+  $('taskForm').addEventListener('submit', e => { e.preventDefault(); const name = $('taskName').value.trim(), hours = Number($('taskHours').value); if (!name || hours <= 0) return; state.tasks.push({ id: crypto.randomUUID(), name, subject: $('taskSubject').value, hours, date: todayKey, done: false }); e.target.reset(); $('taskHours').value = '1'; persist(); render(); notify('Study task added.'); });
+  $('chapterForm').addEventListener('submit', e => { e.preventDefault(); const name = $('chapterName').value.trim(); if (!name) return; state.chapters.push({ id: crypto.randomUUID(), name, subject: $('chapterSubject').value, done: false }); e.target.reset(); persist(); render(); notify('Chapter added.'); });
+  $('mockForm').addEventListener('submit', e => { e.preventDefault(); const score = Number($('mockScore').value); if (!Number.isFinite(score) || score < 0 || score > 720) { notify('Enter a score from 0 to 720.'); return; } state.mocks.push({ id: crypto.randomUUID(), name: $('mockName').value.trim(), score, date: todayKey }); e.target.reset(); persist(); render(); notify('Mock score saved.'); });
+  $('revisionForm').addEventListener('submit', e => { e.preventDefault(); const name = $('revisionName').value.trim(); if (!name) return; state.revisions.push({ id: crypto.randomUUID(), name, date: $('revisionDate').value }); e.target.reset(); persist(); render(); notify('Revision reminder added.'); });
+  render();
+})();
+</script>
+</body>
+</html>
